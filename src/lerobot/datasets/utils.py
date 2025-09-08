@@ -549,9 +549,32 @@ def check_timestamps_sync(
     mask = np.ones(len(diffs), dtype=bool)
     ignored_diffs = episode_data_index["to"][:-1] - 1  # indices at the end of each episode
     mask[ignored_diffs] = False
-    filtered_within_tolerance = within_tolerance[mask]
 
-    # Check if all remaining diffs are within tolerance
+    # for i, j in zip(within_tolerance, mask):
+    #     print(i, j)
+    filtered_within_tolerance = within_tolerance[mask]
+    # iss = np.arange(len(diffs))[mask]
+    # ess = episode_indices[1:][mask]
+    # print(episode_data_index)
+    # for j, (t, i) in enumerate(zip(timestamps, episode_indices)):
+    #     print(t, i, j)
+    # #t0 = timestamps[0]
+    # #i0 = episode_indices[0]
+    # #for t, i in zip(timestamps, episode_indices):
+    # #    ignore = (i - i0) == 1
+
+    # #    within = (np.abs((t - t0) - 1.0 / fps) <= tolerance_s) or ignore
+    # #    s = "##################" if not within else ""
+    # #    if not within:
+    # #        print(t, i, s)
+    # #    t0 = t
+    # #    i0 = i
+    # # Check if all remaining diffs are within tolerance
+    # for t, i, e in zip(filtered_within_tolerance, iss, ess):
+    #     if not t:
+    #         print(t, i, e)
+    # print(ess)
+    # print(episode_data_index)
     if not np.all(filtered_within_tolerance):
         # Track original indices before masking
         original_indices = np.arange(len(diffs))
