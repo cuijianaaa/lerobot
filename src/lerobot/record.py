@@ -258,6 +258,8 @@ def record_loop(
             base_action = robot._from_keyboard_to_base_action(keyboard_action)
 
             action = {**arm_action, **base_action} if len(base_action) > 0 else arm_action
+        elif robot.name == "Mage":
+            action = {}
         else:
             logging.info(
                 "No policy or teleoperator provided, skipping action generation."

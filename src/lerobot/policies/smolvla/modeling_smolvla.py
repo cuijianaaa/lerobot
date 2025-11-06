@@ -51,7 +51,8 @@ policy = SmolVLAPolicy.from_pretrained("lerobot/smolvla_base")
 ```
 
 """
-
+import numpy as np
+import cv2
 import math
 import os
 import re
@@ -835,6 +836,14 @@ class VLAFlowMatching(nn.Module):
 
         if time is None:
             time = self.sample_time(actions.shape[0], actions.device)
+        # show_image = images[0][0].detach().cpu().numpy().transpose(1, 2, 0)
+        # show_image = ((show_image + 1.0) / 2.0 * 255.0).astype(np.uint8)
+        # cv2.imshow("image", show_image)
+        # cv2.waitKey(0)
+
+        # print('image', images[0].shape, torch.min(images[0]), torch.max(images[0]))
+        # print('state', state.shape, state)
+        # print('actions', actions.shape, actions)
 
         time_expanded = time[:, None, None]
         x_t = time_expanded * noise + (1 - time_expanded) * actions

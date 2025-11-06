@@ -1,0 +1,9 @@
+CUDA_VISIBLE_DEVICES=1 lerobot-train \
+  --policy.push_to_hub=false \
+  --policy.path=lerobot/smolvla_base \
+  --dataset.repo_id=jiancui/mage-test-merge2 \
+  --batch_size=48 \
+  --steps=200000 \
+  --output_dir=outputs/train/mage_train_merge2 \
+  --job_name=my_mage_training \
+  --wandb.enable=true
